@@ -25,12 +25,6 @@ var MusicChannel = new BroadcastChannel('Music');
 
 
 
-MusicChannel.onmessage = function(event) {
-  const requestData = event.data;
-  const requestType = requestData.type;
-
-  switch (requestType) {
-    case 'getSongInfo':
 
     var songIfo = [
         songnameOUT,
@@ -38,16 +32,24 @@ MusicChannel.onmessage = function(event) {
         songArtistOUT,
     ]
 
-      MusicChannel.postMessage({ type: 'getSongInfoR', data: songIfo });
-      
-      break;
-
-    default:
-      console.log('Received unexpected request type:', requestType);
-  }
-};
 
 
+    MusicChannel.onmessage = function(event) {
+      const requestData = event.data;
+      const requestType = requestData.type;
+    
+      switch (requestType) {
+        case 'getSongInfo':
+          var songInfo = requestData.data; // Corrected accessing the 'data' property
+    
+          MusicChannel.postMessage({ type: 'getSongInfoR', data: songInfo });
+          break;
+    
+        default:
+          console.log('Received unexpected request type:', requestType);
+      }
+    };
+    
 
 
 
