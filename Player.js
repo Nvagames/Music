@@ -14,15 +14,20 @@ var songAlbumURL;
 
 //NOVAGAMES STUFF
 
-var songnameOUT;
+var songnameOUT = null;
 
-var songArtistOUT;
+var songArtistOUT = null;
 
-var songAlbumSrcOUT;
+var songAlbumSrcOUT = null;
 
 
 var MusicChannel = new BroadcastChannel('Music');
 
+let songIfo = {
+    title: songnameOUT,
+    cover: songAlbumSrcOUT,
+    artist: songArtistOUT,
+};
 
 MusicChannel.onmessage = function(event) {
   const requestData = event.data;
@@ -31,12 +36,9 @@ MusicChannel.onmessage = function(event) {
   switch (requestType) {
     case 'getSongInfo':
 
-      var songInfo = {
-        title: songnameOUT,
-        cover: songAlbumSrcOUT,
-        artist: songArtistOUT
-      };
-      MusicChannel.postMessage({ type: 'getSongInfoR', data: songInfo });
+      
+
+      MusicChannel.postMessage({ type: 'getSongInfoR', data: songIfo });
       break;
 
     default:
@@ -91,6 +93,15 @@ var contextaudiomade = false
         songnameOUT = title2
         songArtistOUT = by
         songAlbumSrcOUT = img
+        
+
+        songIfo = {
+            title: songnameOUT,
+            cover: songAlbumSrcOUT,
+            artist: songArtistOUT,
+        };
+
+        console.log(songIfo)
 
         MusicChannel.postMessage({ type: 'getSongInfoR' });
 
