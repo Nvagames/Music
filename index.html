@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.1.0"></script>
+     <script src="https://cdn.jsdelivr.net/npm/colorthief@2.3.0/dist/color-thief.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+	<!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5REZTEC3DL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5REZTEC3DL');
+</script>
+<meta name="description" content="A Music Site">
+<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Music Now V2.0</title>
+  <link rel="icon" href="./icon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" href="./styles/page.css">
+
+
+  <link rel="stylesheet" href="./styles/player.css">
+  <link rel="stylesheet" href="./styles/itemsSmall.css">
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <script async src="https://cse.google.com/cse.js?cx=978c9172bae974bd2">
+  </script>
+  <script src="https://sz-games.github.io/GobalSettings.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js" integrity="sha512-YsR46MmyChktsyMMou+Bs74oCa/CDdwft7rJ5wlnmDzMj1mzqncsfJamEEf99Nk7IB0JpTMo5hS8rxB49FUktQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<style>
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #232323;
+
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(66, 66, 66); 
+  border-radius: 10px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #878787; 
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+</style>
+<body onresize="sizePages()">
+  <style>
+    .launchbutton {
+      transition: 0.5s;
+    }
+    .launchbutton:hover {
+      width: 90% !important;
+      border: #1f1f1f solid 3px !important;
+    }
+    @keyframes closelaunch {
+      0% {opacity: 1; transform: scale(1.0) }
+      50% {opacity: 1; background-color: white; border-radius: 20px; transform: scale(0.5) }
+      100% {opacity: 0; background-color: white; border-radius: 20px;  transform: scaleX(0.5) scaleY(0.0) }
+    }
+  </style>
+<!--PartINTRO-->
+<div id="ZINTRO" style="z-index: 100; transition: 0.5s; width: 100%; height: 100%; background-color: #333333; position: fixed; display: none;">
+  <div style="width: 75px; height: 75px;  border: 2px solid #232323; top: 15%; left: 50%; box-shadow: 0px 0px 15px #121212; transform: translateX(-50%); border-radius: 15px; position: absolute;">
+    <img style="width: 75px; height: 75px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" src="https://zatoga.net/images/logo.png" >
+  </div>
+    <h1 style="top: 15px; left: 50%; position: absolute; transform: translateX(-50%);">Welcome, Zatoga</h1>
+  <p style="left: 50%; top: 40%; position: absolute; width: fit-content; word-wrap: break-word; text-align: center; transform: translate(-50%, -50%);">This Music Site Is Hosted By Sz Games And Is Owned And Maintained By Sz Games.</p>
+  <h3 style="top: 50%; position: absolute; left: 50%; font-size: 15px; width: 85%; word-wrap: break-word; text-align: center; transform: translateX(-50%);">This Music Service (Music Now 2.0) is currently in beta and bugs may occur, Zatoga Is A Partner Of Sz Games As Of Febuary 24th, If This Changes Access May Be Restricted, As Of Right Now Zantoga Is Granted Full Access To The Library Of Music, Enjoy</h3>
+ 
+  <button class="launchbutton" onclick="launchINTRO()" style="
+    z-index: 10;
+    width: 75%;
+    border-radius: 15px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    cursor: pointer;
+    transform: translateX(-50%);
+    height: 45px;
+    color: white;
+    border: none;
+    background-color: #232323;
+
+  ">
+    Launch Music Now 2.0
+  </button>
+</div>
+
+<div id="BLOCKEDINTRO" style="z-index: 100; transition: 0.5s; width: 100%; height: 100%; background-color: #333333; position: fixed; display: block;">
+  <div style="width: 75px; height: 75px;  border: 2px solid #232323; top: 15%; left: 50%; box-shadow: 0px 0px 15px #121212; transform: translateX(-50%); border-radius: 15px; position: absolute;">
+    <img style="width: 75px; height: 75px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" src="./icon.png" >
+  </div>
+    <h1 style="top: 15px; left: 50%; position: absolute; transform: translateX(-50%);">An Error Has Occured!</h1>
+  <p style="left: 50%; top: 40%; position: absolute; width: fit-content; word-wrap: break-word; text-align: center; transform: translate(-50%, -50%);">This Music Site Is Hosted By Sz Games And Is Owned And Maintained By Sz Games.</p>
+  <h3 style="top: 50%; position: absolute; left: 50%; font-size: 15px; width: 85%; word-wrap: break-word; text-align: center; transform: translateX(-50%);">An error has occured if you are a guest then just  continue, if your the owner of the site of which this site is being accessed from your CORS policy is blocking this site from accessing the hostname of your site there may be limited functionality when launched in this state to fix this contact the owner of this page it is not required to as of now, but starting march 1st unauthorized hostnames will be blocked from using this site in a iframe. </h3>
+ 
+  <button class="launchbutton" onclick="launchINTROB()" style="
+    z-index: 10;
+    width: 75%;
+    border-radius: 15px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    cursor: pointer;
+    transform: translateX(-50%);
+    height: 45px;
+    color: white;
+    border: none;
+    background-color: #232323;
+
+  ">
+    Launch Music Now 2.0 In Limited Mode
+  </button>
+</div>
+<script>
+  function launchINTRO() {
+    
+    document.getElementById('ZINTRO').style.animation = "closelaunch 0.8s"
+
+    setTimeout(() => {
+      document.getElementById('ZINTRO').style.display = 'none'
+    }, 750);
+  }
+  function launchINTROB() {
+    var elements = document.querySelectorAll('.homeOP');
+    document.getElementById('NAV').style.display = 'none'
+    elements.forEach(function(element) {
+        element.disabled = true;
+        element.style.opacity = 0.6
+    });
+    document.getElementById('volumeRange').disabled = false
+
+    document.getElementById('BLOCKEDINTRO').style.animation = "closelaunch 0.8s"
+    setTimeout(() => {
+      document.getElementById('BLOCKEDINTRO').style.display = 'none'
+    }, 750);
+  }
+  var blockedcors = true
+  console.log(window.parent.location.hostname)
+   
+      try {
+        //var parentHostname = window.parent.location.hostname;
+        if (window.parent.location.hostname.includes('github.io') || window.parent.location.hostname === 'localhost') {
+          blockedcors = false
+          document.getElementById('ZINTRO').style.display = 'none';
+
+          document.getElementById('BLOCKEDINTRO').style.display = 'none';
+          
+        } else {
+          blockedcors = false
+
+          var parentHostname = window.parent.location.hostname;
+
+          console.log("Parent Hostname: " + parentHostname);
+         
+          if (parentHostname === 'zatoga.net') {
+            document.getElementById('BLOCKEDINTRO').style.display = 'none';
+
+            document.getElementById('ZINTRO').style.display = 'block';
+
+          }
+      
+        }
+      } catch (error) {
+          console.log("CORS blocked access to parent hostname.");
+          document.getElementById('BLOCKEDINTRO').style.display = 'block';
+        
+      }
+    
+
+//document.getElementById('ZINTRO').style.display = 'block'
+
+</script>
+<script src="./setupsomewindowshit.js"></script>
+
+
+
+  <div id="LOADERNOUSE" style="display: none; z-index: 1000; position: fixed; width: 100%; height: 100%; background-color: #202020; ">
+    <p>Loading...</p>
+    <div style="position: relative; width: 100%; height: 90%; background-color: #444444;">
+
+    </div>
+  </div>
+  
+
+  <div  class="nav" id="NAV">
+    <img src="./icon.png" class="navicon" style="">
+    <span class="material-icons" onclick="toggleQueue()" style="cursor: pointer; position: relative; top: 50%; float: right; margin-right: 10px; transform: translate(-0%, -50%); right: 0px; font-size: 25px;">
+      queue_music
+      </span>
+      <span class="material-icons" onclick="toggleEQ()" style="cursor: pointer; position: relative; top: 50%; float: right; margin-right: 10px; transform: translate(-0%, -50%); right: 0px; font-size: 25px;">
+        discover_tune
+        </span>
+        <span class="material-icons" onclick="makeplaylist()" style="cursor: pointer; position: relative; top: 50%; float: right; margin-right: -215px; transform: translate(-0%, -50%); right: 0px; font-size: 25px;">
+          add
+          </span>
+          <div style="cursor: pointer; position: relative; top: 50%; height: 25px; border-radius: 35px; width: 3px; background-color: #3e3e3e; transform: translate(-0%, -50%); margin-right: -180px; float: right; right: 0; font-size: 20px;">
+            
+          </div>
+          <div style="position: absolute; width: 40%; height: 50px; top: 0; right: 110px; margin-right: 10px;">
+          <span class="material-icons" onclick="makeplaylist()" style="cursor: pointer; position: relative; top: 50%; float: right; margin-right: 10px; transform: translate(-0%, -50%); right: 0px; font-size: 25px;">
+            playlist_play
+            </span>
+          </div>
+            
+</div>
+
+<!--UI INTERACTIONS-->
+<style>
+  .inputstuff:focus {
+    outline: none;
+  }
+</style>
+<div id="menucontainer2" style="transition: 0.5s; display: none; position: fixed; z-index: 100; height: 100%; width: 100%; background-color: #2323237a;">
+  <div style="transition: 0.5s; display: none; width: 35%; height: 30%; overflow-y: auto; left: 50%; border-radius: 15px; background-color: #232323; border: 2px solid gray; top: 50%; position: fixed; transform: translate(-50%, -50%);" id="nameplaylist">
+    <h1 style="font-size: 20px; margin: 15px;">
+      Create A Playlist
+    </h1>
+    <input class="inputstuff"
+    style="
+    top: 20px;
+    width: 80%;
+    border: none;
+    border-radius: 25px;
+    background-color: #444444;
+    color: white;
+    position: relative;
+    left: 50%;
+    height: 50px;
+    transform: translate(-50%);
+    "
+    id="nameplayl"
+     type="
+     text
+     ">
+     <div style="bottom: 10px; margin-top: 50px; left: 50%; transform: translate(-50%); position: relative; width: 90%;  height: 50px;">
+       
+      <button
+      onclick="handleplayliststuffe4()"
+      style="
+      position: relative;
+      cursor: pointer;
+      left: 50%;
+      transform: translate(-50%);
+
+      top: 15px;
+      width: 90%;
+      background-color: #313131;
+      border-radius: 15px;
+      border: none;
+      height: 40px;
+      color: rgba(255, 255, 255, 0.779);
+      "
+      >
+    Create
+    </button>
+    <button
+    style="
+    position: relative;
+    width: 90%;
+    background-color: #313131;
+    border-radius: 15px;
+    left: 50%;
+    transform: translate(-50%);
+    border: none;
+    top: 15px;
+  margin-top: 15px;
+    cursor: pointer;
+    height: 40px;
+    color: rgba(255, 255, 255, 0.779);
+    "
+    >
+  Cancel
+  </button>
+     </div>
+  </div>
+
+  <div id="playlistmade" style="display: none; width: 35%; height: 30%; left: 50%; border-radius: 15px; background-color: #232323; border: 2px solid gray; top: 50%; position: fixed; transform: translate(-50%, -50%);" >
+    <h1 style="font-size: 25px; text-align: center;">
+      Your Playlist Was Made!
+    </h1>
+    <p style="text-align: center;">
+      This Will Close In A Few Seconds
+    </p>
+    
+  </div>
+</div>
+
+
+
+<!--PLAYER-->
+
+
+<audio  id="Paudio">
+  <source src="" type="audio/mpeg">
+</audio>
+
+
+
+<div class="Player" id="MusicPlayer">
+
+
+  <img src="./assets/covers/cover.png" class="playericon" id="Playericon">
+  <p id="SongName" class="title">No Song Selected</p>
+  <p id="Artist" class="ar"></p>
+
+  <div class="controls">
+    <span id="cs_play_pause_btn" class="PlayBTN" onclick="playpause()" style="">
+
+        <i class="material-icons PlayI" style="" id="audio_play">play_circle</i>
+        <i class="material-icons PlayI" style="" id="audio_pause">pause_circle</i>
+      
+    </span>
+
+    <span id="loop3" class="loop" onclick="toggleL()" style="">
+
+      <i class="material-icons PlayI" style="" id="loop2">repeat</i>
+      <i class="material-icons PlayI" style="color: #b8b8b8;" id="loop">repeat_on</i>
+
+    </span>
+    <span id="next" class="loop" onclick="handleNext()" style="">
+
+      <i class="material-icons PlayI" style="">skip_next</i>
+
+    </span>
+  </div>
+  
+<div id="progress-container">
+  <p id="curtime" class="timeCur">00:00</p>
+  <p id="totaltime" class="timetotal">00:00</p>
+
+  <div id="progress-bar"></div>
+</div>
+
+<div class="rightPart">
+  <div class="volume-slider-container">
+    
+    <div class="volume-slider">
+        <input type="range" min="0" max="0.7" step="0.01" value="0.5" id="volumeRange">
+    </div>
+</div>
+</div>
+<style>
+  .equalizer {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    z-index: -1;
+
+    bottom: 0;
+    transform: rotateX(180deg) translate(-50%, -0%);
+    height: 70px; /* Adjust as needed */
+  }
+  
+  .barrs {
+    width: 25px; 
+    border-radius: 15px;
+    height:5px;
+    min-height: 5px;
+    max-height: 68px;
+
+    top: 0;
+    z-index: -1;
+    position: relative;
+    background-color: #4f4f4f;
+    transition: height 0.2s; /* Smooth transition for height changes */
+  }
+</style>
+<div class="equalizer" style="display: none;" id="eqqui">
+  <div class="barrs" id="bar1"></div>
+  <div class="barrs" style="display: none;" id="bar2"></div>
+  <div class="barrs" id="bar3"></div>
+  <div class="barrs" id="bar4"></div>
+  <div class="barrs" id="bar5"></div>
+  <div class="barrs" id="bar6"></div>
+</div>
+
+
+</div>
+<script src="./Player.js"></script>
+
+
+<!--script>
+
+  var cov = document.getElementById('albumcover');
+  cov.style.opacity = 0;
+  setTimeout(() => {
+    if (imggg.includes(".")) {
+    cov.src =  'https://github.com/Mr-funkinguy/Music-Player-/blob/main/albums/' + imggg + '?raw=true'
+    covver = 'https://github.com/Mr-funkinguy/Music-Player-/blob/main/albums/' + imggg + '?raw=true';
+  }
+  else if (imggg.includes("2pac")) {
+    cov.src =  'https://github.com/Mr-funkinguy/Music-Player-/blob/main/albums/alle.jpeg?raw=true';
+    covver = 'https://github.com/Mr-funkinguy/Music-Player-/blob/main/albums/alle.jpeg?raw=true';
+  }
+  else if(imggg.includes("test")) {
+   
+
+
+  }
+  
+  else
+  {
+  cov.onerror = () => {
+ 
+      cov.src = 'https://github.com/Mr-funkinguy/Music-Player-/blob/main/albums/' + imggg + '.jpeg?raw=true'
+    covver = 'https://github.com/Mr-funkinguy/Music-Player-/blob/main/albums/' + imggg + '.jpeg?raw=true';
+    console.log('jpeg has been found');
+ 
+
+  }
+
+  cov.src = 'https://github.com/Mr-funkinguy/Music-Player-/blob/main/albums/' + imggg + '.png?raw=true'
+ 
+ covver = 'https://github.com/Mr-funkinguy/Music-Player-/blob/main/albums/' + imggg + '.png?raw=true';
+ console.log('png has been found');
+
+  
+ 
+
+  }
+  const artist = audio_id.artist || audio_id.getAttribute('artist');
+    console.log(artist);
+cov.onload = function() {
+
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+     
+      title: name,
+      artist: '',
+      album: '',
+      artwork: [
+        { src: covver,   sizes: '96x96',   type: 'image/png' },
+        { src: covver, sizes: '128x128', type: 'image/png' },
+        { src: covver, sizes: '192x192', type: 'image/png' },
+        { src: covver, sizes: '256x256', type: 'image/png' },
+        { src: covver, sizes: '384x384', type: 'image/png' },
+        { src: covver, sizes: '512x512', type: 'image/png' },
+      ]
+    });
+  }
+else {
+	 navigator.mediaSession.metadata = new MediaMetadata({
+      title: name,
+      artist: '',
+      album: '',
+      artwork: [
+        { src: covver,   sizes: '96x96',   type: 'image/png' },
+        { src: covver, sizes: '128x128', type: 'image/png' },
+        { src: covver, sizes: '192x192', type: 'image/png' },
+        { src: covver, sizes: '256x256', type: 'image/png' },
+        { src: covver, sizes: '384x384', type: 'image/png' },
+        { src: covver, sizes: '512x512', type: 'image/png' },
+      ]
+    });
+}
+cov.style.opacity = 1;
+    
+};
+	  
+
+  
+	  
+  }, 200);
+	
+
+ console.log(cov.src);
+
+  
+
+
+
+</script-->
+
+<!-------------------------------->
+<script src="./Load.js"></script>
+<script src="./animation.js"></script>
+
+   <!--BODY-->
+
+   <!--Queue UI-->
+<div id="QUEUEUI" style="display: none;" class="queueUI">
+  <div class="BGMANUSTYKE">
+    <h1 style="right: -10px; font-size: 25px; position: relative; width: max-content;">Queue</h1>
+  </div>
+  <div id="queueSongs">
+
+  </div>
+</div>
+
+<div style="display: none;" id="EQMenu">
+  
+    <h1 style="text-align: center; font-size: 20px;">Equalizer (EQ)</h1>
+    <!-- EQ sliders for specific frequencies -->
+    <div class="slider-container"  id="sliderCONT">
+      
+      <div>
+          <label class="LABELFOREQ" id="freq32Slider">32 Hz:</label>
+          <input type="range" class="SLIDERE" id="freq32Slider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+
+      <div>
+          <label class="LABELFOREQ" id="freq64Slider">64 Hz:</label>
+          <input type="range" class="SLIDERE" id="freq64Slider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+
+      <div>
+          <label class="LABELFOREQ" id="freq125Slider">125 Hz:</label>
+          <input type="range" class="SLIDERE" id="freq125Slider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+
+      <div>
+          <label class="LABELFOREQ" id="freq250Slider">250 Hz:</label>
+          <input type="range" class="SLIDERE" id="freq250Slider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+
+      <div>
+          <label class="LABELFOREQ" id="freq500Slider">500 Hz:</label>
+          <input type="range" class="SLIDERE" id="freq500Slider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+
+      <div>
+          <label class="LABELFOREQ" id="freq1kSlider">1K kHz:</label>
+          <input type="range" class="SLIDERE" id="freq1kSlider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+
+      <div>
+          <label class="LABELFOREQ" id="freq2kSlider">2K kHz:</label>
+          <input type="range" class="SLIDERE" id="freq2kSlider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+
+      <div>
+          <label class="LABELFOREQ" id="freq4kSlider">4K kHz:</label>
+          <input type="range" class="SLIDERE" id="freq4kSlider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+
+      <div>
+          <label class="LABELFOREQ" id="freq8kSlider">8K kHz:</label>
+          <input type="range" class="SLIDERE" id="freq8kSlider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+
+      <div>
+          <label class="LABELFOREQ" id="freq16kSlider">16K kHz:</label>
+          <input type="range" class="SLIDERE" id="freq16kSlider" min="-20" max="20" step="0.1" value="0" data-index="0">
+      </div>
+  </div>
+
+    <!-- Reset button -->
+    <button style="border: solid 3px gray; color: white; cursor: pointer; position: relative; left: 50%; transform: translate(-50%, -0%); width: 90%; height: 50px; border-radius: 15px; background-color: #232323;" id="resetButton">Reset to Default</button>
+    <br>
+
+</div>
+
+
+  <div style="width: 100%; display: none; overflow-y: auto;" id="browse">
+      <span onclick="movePage('browse', 'Home')"  class="material-icons"  style="background-color: #1d1d1dcf; padding: 2px; border-radius: 15px; z-index: 30; cursor: pointer;  font-size: 25px;  left: 10px; top: 10px;  color: white;  position: relative;">  
+        arrow_back
+    </span>
+    <br>
+      <br>
+      <input class="browseTBOX" oninput="searchFUNCTION()" placeholder="Search..." value="" id="searchB">
+      <div id="songs6">
+      
+      </div>
+      <div id="noRESULT" style="display: none; position: absolute; transform: translate(-50%, -50%); left: 50%; top: 50%;">
+        <p>No Results Found:</p>
+      </div>
+  
+    <script>
+   
+
+      // Get the input field and element container
+      var searchInput = document.getElementById('searchB');
+      var elementContainer = document.getElementById('songs6')
+
+      // Add an event listener to the search input
+
+      function searchFUNCTION() {
+        const searchText = searchInput.value.toLowerCase();
+        const items = document.getElementsByClassName('item');
+
+// Loop through all items
+for (let i = 0; i < items.length; i++) {
+  const item = items[i];
+  const itemText = item.textContent.toLowerCase();
+
+  // Check if the item's text contains the search text
+  if (itemText.includes(searchText)) {
+    item.style.display = 'block'; // Display the item
+  } else {
+    item.style.display = 'none'; // Hide the item
+  }
+}
+      }
+
+
+
+    </script>
+ </div>
+
+ <script>
+
+ </script>
+
+<!--AlbumPG-->
+<div style="width: 100%; position: relative; display: none; overflow-y: auto; " id="albumPG">
+  <span onclick="movePage('albumPG', 'Home')"  class="material-icons"  style="background-color: #1d1d1dcf; padding: 2px; border-radius: 15px; z-index: 30; cursor: pointer;  font-size: 25px;  left: 10px; top: 10px;  color: white;  position: relative;">  
+    arrow_back
+</span>
+<div class="videocontainerhead">
+  <video src="" class="headvideo" id="headvideo">
+
+  </video>
+  <script>
+    var headvideostuff = document.getElementById('headvideo')
+    headvideostuff.addEventListener("ended", restartheadvid)
+    function restartheadvid() {
+      headvideostuff.currentTime = 0
+      headvideostuff.play()
+    }
+  </script>
+</div>
+<br>
+<br>
+<div id="ALBUMSANDSTUFF"></div>
+  <br id="moveBack">
+  <br>
+  <br>
+  <div style="z-index: 2;" id="albumSongs">
+  
+  
+  </div>
+  
+</div>
+
+  <!--Home-->
+  <div style="width: 100%; position: relative;  overflow-y: auto;" id="Home">
+    <br>
+    <button onclick="moveBR2('Home', 'browse', './master.json', 'songs6', true)" class="homeOP">Browse</button>
+
+    <br>
+    <br>
+    <button onclick="window.location = 'https://forms.gle/XWXZ7JEwHwGmm3WLA'" class="homeOP">Song Request</button>
+
+    <br>
+    <br>
+
+    <button onclick="movePage('Home', 'visualeq')" class="homeOP">Audio Visualizer</button>
+
+    <br>
+    <br>
+    <h1 class="MenuSections">Featured Albums</h1>
+    <div id="headers" style="overflow-x: auto; display: flex; overflow-y: hidden; position: relative; width: 100%; height: 45%; ">
+    
+    </div>
+    <br>
+    <h1 class="MenuSections">Featured Singles</h1>
+
+    <div id="Singles" style="overflow-x: auto; overflow-y: hidden; position: relative; width: 100%; height: 40%;">
+    
+    </div>
+      <script>
+     
+  
+        itemsAdd('./home.json', 'headers')
+       
+      </script>
+  </div>
+					<!--EQ-VIS-->
+<div style="width: 100%; position: relative; display: none; overflow-y: auto; " id="visualeq">
+  <span onclick="movePage('visualeq', 'Home')"  class="material-icons"  style="background-color: #1d1d1dcf; padding: 2px; border-radius: 15px; z-index: 30; cursor: pointer;  font-size: 25px;  left: 10px; top: 10px;  color: white;  position: relative;">  
+    arrow_back
+</span>
+<span onclick="togglepicture()"  class="material-icons"  style="background-color: #1d1d1dcf; padding: 2px; border-radius: 15px; z-index: 30; cursor: pointer;  font-size: 25px;  left: 10px; top: 10px;  color: white;  position: relative;">  
+  album
+</span>
+<div style="z-index: 1;  transition: 0.5s; position: absolute; left: 50%; top: 50%; height: fit-content; width: 100%; transform: translate(-50%, -50%);" id="audio-visual1">
+
+</div>
+
+<canvas id="bgvisual" style="z-index: -5; object-fit: cover; left: 0; overflow: hidden; position: absolute; width: 100%; height: 100%;" ></canvas>
+
+  <script type="module">
+    import { audioContext, audioSource } from './EQ.js';
+    console.log(audioContext + ' yeye')
+  document.body.addEventListener("resize", setbgvissize);
+  var isbassallowedpic = false 
+    function setbgvissize() {
+      var bgvisualelement = document.getElementById('bgvisual')
+      bgvisualelement.style.width = window.innerWidth + 'px'
+      //bgvisualelement.style.height  = window.innerHeight + 'px'
+      console.log('changed')
+    }
+    
+    setbgvissize()
+
+  window.setvisualbg = function() {
+    const canvas = document.getElementById('bgvisual');
+    const ctx = canvas.getContext('2d');
+    const sourceImage = document.getElementById('Playericon');
+    var analyser = null
+    var source = null
+    
+    var hasaudiobeenconnected = false
+    let isBassEffectOn = true; 
+    function updateshit() {
+      if(isBassEffectOn) {
+        if(hasaudiobeenconnected) {
+
+        } else {
+         analyser = audioContext.createAnalyser();
+          source = audioSource
+          source.connect(analyser);
+          analyser.connect(audioContext.destination);
+          hasaudiobeenconnected = true
+        }
+      } else {
+         //analyser = null
+         //source = null
+      }
+    }
+
+    updateshit()
+    function blurAndZoomImage(img) {
+        const blurAmount = 3;
+        const zoomFactor = 0.9;
+
+        ctx.filter = `blur(${blurAmount}px)`;
+
+        const zoomedWidth = img.width * zoomFactor;
+        const zoomedHeight = img.height * zoomFactor;
+
+        ctx.drawImage(img, canvas.width / 2 - zoomedWidth / 2, canvas.height / 2 - zoomedHeight / 2, zoomedWidth, zoomedHeight);
+
+        ctx.filter = 'none';
+    }
+
+    function scaleImage(img, targetWidth, targetHeight) {
+        const offscreenCanvas = document.createElement('canvas');
+        const offscreenCtx = offscreenCanvas.getContext('2d');
+
+        offscreenCanvas.width = targetWidth;
+        offscreenCanvas.height = targetHeight;
+
+        offscreenCtx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+        return offscreenCanvas;
+    }
+    function updateCanvas() {
+    const img = new Image();
+
+    img.onload = function() {
+      var zoomFactor = null
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Adjust zoom factor based on real-time bass intensity
+        if(isbassallowedpic===true) {
+           zoomFactor = 0.8 + (realTimeBassIntensity * 0.2); // Adjust as needed
+        } else {
+          zoomFactor = 0.8 ; // Adjust as needed
+        }
+        const scaledImg = scaleImage(img, 400 * zoomFactor, 400 * zoomFactor);
+        blurAndZoomImage(scaledImg);
+
+        // Schedule the next update
+          requestAnimationFrame(updateCanvas);
+        
+    };
+    img.src = sourceImage.src;
+}
+var realTimeBassIntensity;
+
+
+function calculateRealTimeBassIntensity() {
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteFrequencyData(dataArray);
+
+    // Define the frequency range for bass frequencies
+    const bassStartFrequency = 20; // Adjust as needed
+    const bassEndFrequency = 150; // Adjust as needed
+
+    // Calculate the index range in the dataArray corresponding to the bass frequencies
+    const startIdx = Math.floor(bassStartFrequency / (audioContext.sampleRate / analyser.fftSize));
+    const endIdx = Math.ceil(bassEndFrequency / (audioContext.sampleRate / analyser.fftSize));
+
+    // Extract the bass data from the dataArray
+    const bassData = dataArray.slice(startIdx, endIdx);
+
+    // Calculate bass intensity based on the isolated bass data
+    const bassIntensity = bassData.reduce((sum, value) => sum + value, 0) / (bassData.length * 255);
+
+    return bassIntensity;
+}
+
+//setInterval(() => {
+  
+  //console.warn('This Takes Up Alot Of Ram')
+//}, 5000);
+
+function updateBassIntensity() {
+  if(isbassallowedpic===true) {
+    realTimeBassIntensity = calculateRealTimeBassIntensity();
+
+    // Schedule the next update
+    requestAnimationFrame(updateBassIntensity);
+  }
+}
+
+var hasalreadyupdatedbass = false;
+
+
+window.togglepicture = function() {
+  if(isbassallowedpic===true) {
+    isbassallowedpic = false
+  } else {
+    isbassallowedpic = true
+    
+    updateBassIntensity();
+    
+
+  }
+  updateshit()
+}
+
+  if(isbassallowedpic===true) {
+    //updateBassIntensity();
+  } else {
+    
+    updateCanvas()
+  }
+
+   
+
+
+    //let animationFrameId = requestAnimationFrame(updateCanvas);
+
+    // Listen for bass effect toggle event, e.g., button click
+   // document.getElementById('toggleBassButton').addEventListener('click', toggleBassEffect);
+
+}
+
+
+    var visualpage = 1
+    function changevis() {
+
+    }
+  </script>
+</div>	     
+
+   <!--Main-->
+
+  <script src="./main.js"> 
+  
+  </script>
+
+ 
+  <script src="./mediaSession.js"> 
+    
+  </script>
+
+
+
+
+
+<!--CONTEXT MENU-->
+<style>
+  #context-menu {
+  display: none;
+  position: absolute;
+  background-color: #333333;
+  border-radius: 15px;
+  border: 1px solid #686868;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 0;
+  z-index: 50;
+}
+
+#context-menu ul {
+  margin: 0;
+  padding: 0;
+  transition: 0.5s;
+
+}
+
+#context-menu li {
+  padding: 8px 20px;
+  transition: 0.5s;
+
+  cursor: pointer;
+}
+
+#context-menu li:hover {
+  border-radius: 15px;
+  background-color: #565656;
+}
+
+</style>
+
+<div id="context-menu">
+  <p style="display: none;" id="menuELEname"></p>
+  <li id="playnext">Add To Queue</li>
+
+  <li id="menu-item-2">Add To Playlist</li>
+</div>
+
+<script>
+let clickedElement = null;
+var isOpen = false;
+const contextMenu = document.getElementById('context-menu');
+const menuItems = contextMenu.querySelectorAll('li');
+const contextElements = document.querySelectorAll('.item');
+
+document.addEventListener('contextmenu', function (e) {
+  if (e.target.classList.contains('item')) {
+    e.preventDefault();
+    if(isOpen===true) {
+      contextMenu.style.display = 'none';
+      isOpen=false;
+
+    }
+    setTimeout(() => {
+      contextMenu.style.left = `${e.pageX}px`;
+      contextMenu.style.top = `${e.pageY}px`;
+      contextMenu.style.display = 'block';
+      isOpen=true
+    }, 200);
+    //contextMenu.style.display = 'block';
+
+    clickedElement = e.target;
+    document.getElementById('menuELEname').innerHTML = clickedElement.id
+  } else {
+    contextMenu.style.display = 'none';
+  }
+});
+
+menuItems.forEach((item) => {
+  item.addEventListener('click', function () {
+    switch (item.id) {
+      case 'playnext':
+        addToQ(clickedElement.id)
+        break;
+      case 'menu-item-2':
+        handlenewsong(clickedElement.id, 'newplay')
+        break;
+
+    }
+    
+    contextMenu.style.display = 'none';
+  });
+});
+
+document.addEventListener('click', function () {
+  contextMenu.style.display = 'none';
+});
+
+</script>
+<script type="module" src="./audioMotion-analyzer.js">
+
+</script>
+
+<script type="module" src="./EQ.js">
+
+</script>
+<script src="./PlaylistHandler.js"></script>
+
+</body>
+</html>
