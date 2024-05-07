@@ -23,7 +23,7 @@ var songAlbumSrcOUT = null;
 
 var MusicChannel = new BroadcastChannel('Music');
 
-let songIfo = {
+var songIfo = {
     title: songnameOUT,
     cover: songAlbumSrcOUT,
     artist: songArtistOUT,
