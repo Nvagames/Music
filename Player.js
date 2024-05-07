@@ -24,32 +24,25 @@ var songAlbumSrcOUT = null;
 var MusicChannel = new BroadcastChannel('Music');
 
 
+MusicChannel.onmessage = function(event) {
+  const requestData = event.data;
+  const requestType = requestData.type;
 
+  switch (requestType) {
+    case 'getSongInfo':
+      var songIfo = {
+        songname: songnameOUT,
+        songAlbumSrc: songAlbumSrcOUT,
+        songArtist: songArtistOUT,
+      };
 
-    var songIfo = [
-        songnameOUT,
-        songAlbumSrcOUT,
-        songArtistOUT,
-    ]
+      MusicChannel.postMessage({ type: 'getSongInfoR', data: songIfo });
+      break;
 
-
-
-    MusicChannel.onmessage = function(event) {
-      const requestData = event.data;
-      const requestType = requestData.type;
-    
-      switch (requestType) {
-        case 'getSongInfo':
-          var songInfo = requestData.data; // Corrected accessing the 'data' property
-    
-          MusicChannel.postMessage({ type: 'getSongInfoR', data: songInfo });
-          break;
-    
-        default:
-          console.log('Received unexpected request type:', requestType);
-      }
-    };
-    
+    default:
+      console.log('Received unexpected request type:', requestType);
+  }
+};
 
 
 
@@ -97,12 +90,11 @@ var contextaudiomade = false
         songArtistOUT = by
         songAlbumSrcOUT = img
         
-
-        var songIfo = [
-            songnameOUT,
-            songAlbumSrcOUT,
-            songArtistOUT,
-        ]
+         songIfo = {
+            songname: songnameOUT,
+            songAlbumSrc: songAlbumSrcOUT,
+            songArtist: songArtistOUT,
+        };
 
         console.log(songIfo)
 
