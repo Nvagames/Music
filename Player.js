@@ -12,6 +12,39 @@ var loop = false;
 var songAlbumURL;
 
 
+//NOVAGAMES STUFF
+
+var songnameOUT;
+
+var songArtistOUT;
+
+var songAlbumSrcOUT;
+
+
+var MusicChannel = new BroadcastChannel('Music');
+
+
+MusicChannel.onmessage = function(event) {
+  const requestData = event.data;
+  const requestType = requestData.type;
+
+  switch (requestType) {
+    case 'getSongInfo':
+
+      var songInfo = {
+        title: songnameOUT,
+        cover: songAlbumSrcOUT,
+        artist: songArtistOUT
+      };
+      MusicChannel.postMessage({ type: 'getSongInfoR', data: songInfo });
+      break;
+
+    default:
+      console.log('Received unexpected request type:', requestType);
+  }
+};
+
+
 
 
 
@@ -55,6 +88,13 @@ var currentSong2;
 var isAL;
 var contextaudiomade = false
     function play(song, title2, by, img, num, R, ISAL) {
+        songnameOUT = title2
+        songArtistOUT = by
+        songAlbumSrcOUT = img
+
+        MusicChannel.postMessage({ type: 'getSongInfoR' });
+
+        
         //alert("Playing " + songInfo.TITLE + " by " + songInfo.BY);
         makeAUDIOAC()
         if(contextaudiomade === true) {
