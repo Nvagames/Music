@@ -98,7 +98,7 @@ var contextaudiomade = false
 
         console.log(songIfo)
 
-        MusicChannel.postMessage({ type: 'getSongInfo' });
+        MusicChannel.postMessage({ type: 'requestAgain' });
 
         
         //alert("Playing " + songInfo.TITLE + " by " + songInfo.BY);
