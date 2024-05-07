@@ -96,11 +96,11 @@ var contextaudiomade = false
         songAlbumSrcOUT = img
         
 
-        songIfo = {
-            title: songnameOUT,
-            cover: songAlbumSrcOUT,
-            artist: songArtistOUT,
-        };
+        var songIfo = [
+            songnameOUT,
+            songAlbumSrcOUT,
+            songArtistOUT,
+        ]
 
         console.log(songIfo)
 
