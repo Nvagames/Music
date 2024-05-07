@@ -23,11 +23,7 @@ var songAlbumSrcOUT = null;
 
 var MusicChannel = new BroadcastChannel('Music');
 
-var songIfo = {
-    title: songnameOUT,
-    cover: songAlbumSrcOUT,
-    artist: songArtistOUT,
-};
+
 
 MusicChannel.onmessage = function(event) {
   const requestData = event.data;
@@ -36,9 +32,14 @@ MusicChannel.onmessage = function(event) {
   switch (requestType) {
     case 'getSongInfo':
 
-      
+    var songIfo = {
+        title: songnameOUT,
+        cover: songAlbumSrcOUT,
+        artist: songArtistOUT,
+    };
 
       MusicChannel.postMessage({ type: 'getSongInfoR', data: songIfo });
+      
       break;
 
     default:
