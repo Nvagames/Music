@@ -32,11 +32,11 @@ MusicChannel.onmessage = function(event) {
   switch (requestType) {
     case 'getSongInfo':
 
-    var songIfo = {
-        title: songnameOUT,
-        cover: songAlbumSrcOUT,
-        artist: songArtistOUT,
-    };
+    var songIfo = [
+        songnameOUT,
+        songAlbumSrcOUT,
+        songArtistOUT,
+    ]
 
       MusicChannel.postMessage({ type: 'getSongInfoR', data: songIfo });
       
